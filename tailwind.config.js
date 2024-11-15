@@ -24,7 +24,11 @@ export default {
       text: ['Roboto', 'serif'],
       title: ['"Baloo 2"', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'hero-pattern': "url('/hero-bg.svg')",
+      },
+    },
   },
   plugins: [],
 }
