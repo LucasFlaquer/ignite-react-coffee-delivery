@@ -28,6 +28,9 @@ export default {
       backgroundImage: {
         'hero-pattern': "url('/hero-bg.svg')",
       },
+      fontSize: {
+        xxs: '0.625rem',
+      },
     },
   },
   plugins: [],
