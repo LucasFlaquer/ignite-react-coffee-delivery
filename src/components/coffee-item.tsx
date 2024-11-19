@@ -2,15 +2,19 @@ import { Minus, Plus, ShoppingCart } from '@phosphor-icons/react'
 import { useState } from 'react'
 
 import { Coffee } from '../constants/coffees'
+import { useCart } from '../context/cart-context'
 
 interface Props {
   coffee: Coffee
 }
 
 export function CoffeeItem({ coffee }: Props) {
+  const { addToCart } = useCart()
   const [amount, setAmount] = useState(1)
 
-  function handleAddToCart() {}
+  function handleAddToCart() {
+    addToCart({ itemId: coffee.id, quantity: amount })
+  }
   function handleAdd() {
     setAmount((state) => state + 1)
   }
@@ -30,7 +34,7 @@ export function CoffeeItem({ coffee }: Props) {
         {coffee.tags.map((tag) => (
           <span
             key={tag}
-            className="text-xxs inline-block w-fit rounded-full bg-yellow-light px-2 py-1 font-text font-bold uppercase text-yellow-dark"
+            className="inline-block w-fit rounded-full bg-yellow-light px-2 py-1 font-text text-xxs font-bold uppercase text-yellow-dark"
           >
             {tag}
           </span>
@@ -44,7 +48,7 @@ export function CoffeeItem({ coffee }: Props) {
       </p>
       <footer className="flex items-center justify-between">
         <span
-          className="text-xxs font-text text-base-text"
+          className="font-text text-xxs text-base-text"
           style={{ lineHeight: '130%' }}
         >
           R${' '}
