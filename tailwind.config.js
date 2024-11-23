@@ -21,6 +21,7 @@ export default {
       'base-card': '#F3F2F2',
       background: '#FAFAFA',
       white: '#FFFFFF',
+      transparent: 'transparent',
     },
     fontFamily: {
       text: ['Roboto', 'serif'],
@@ -38,10 +39,10 @@ export default {
   plugins: [
     gridAreas({
       addressForm: [
-        'cep cep . . .',
-        'address address address address address',
-        'number number complement complement complement',
-        'neighborhood neighborhood city city uf',
+        'cep . .',
+        'address address address',
+        'number complement complement',
+        'neighborhood city uf',
       ],
     }),
   ],

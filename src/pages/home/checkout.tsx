@@ -1,5 +1,7 @@
 import { MapPinLine } from '@phosphor-icons/react'
 
+import { Input } from '../../components/input'
+
 export function Checkout() {
   return (
     <form className="mx-auto flex w-full max-w-[1120px] justify-between gap-8">
@@ -8,35 +10,35 @@ export function Checkout() {
           Complete seu pedido
         </legend>
         <div className="rounded-lg bg-base-card p-10">
-          <div className="flex gap-2">
+          <div className="mb-8 flex gap-2">
             <MapPinLine className="text-yellow-dark" size={22} />
             <div>
               <h3>Endereço de Entrega</h3>
               <p>Informe o endereço onde deseja receber seu pedido</p>
             </div>
           </div>
-          <div className="grid-areas-addressForm grid gap-4">
+          <div className="grid grid-cols-[200px_1fr_60px] gap-4 grid-areas-addressForm">
             <div className="area-cep">
-              <input type="text" placeholder="CEP" />
+              <Input type="text" placeholder="CEP" />
             </div>
 
             <div className="area-address">
-              <input type="text" className="w-full" placeholder="RUA" />
+              <Input type="text" placeholder="RUA" />
             </div>
             <div className="area-number">
-              <input type="text" className="w-full" placeholder="Número" />
+              <Input type="text" placeholder="Número" />
             </div>
             <div className="area-complement">
-              <input type="text" className="w-full" placeholder="Complemento" />
+              <Input type="text" placeholder="Complemento" />
             </div>
             <div className="area-neighborhood">
-              <input type="text" className="w-full" placeholder="Bairro" />
+              <Input type="text" placeholder="Bairro" />
             </div>
             <div className="area-city">
-              <input type="text" className="w-full" placeholder="Cidade" />
+              <Input type="text" placeholder="Cidade" />
             </div>
             <div className="area-uf">
-              <input type="text" className="w-full" placeholder="UF" />
+              <Input type="text" placeholder="UF" />
             </div>
           </div>
         </div>
