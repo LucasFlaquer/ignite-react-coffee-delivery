@@ -1,3 +1,5 @@
+import { gridAreas } from 'tailwindcss-grid-areas'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
@@ -33,5 +35,14 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    gridAreas({
+      addressForm: [
+        'cep cep . . .',
+        'address address address address address',
+        'number number complement complement complement',
+        'neighborhood neighborhood city city uf',
+      ],
+    }),
+  ],
 }
