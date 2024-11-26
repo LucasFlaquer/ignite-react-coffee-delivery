@@ -39,7 +39,7 @@ export function CheckoutForm() {
             <Input type="text" placeholder="Número" />
           </div>
           <div className="area-complement">
-            <Input type="text" placeholder="Complemento" />
+            <Input type="text" placeholder="Complemento" isOptional />
           </div>
           <div className="area-neighborhood">
             <Input type="text" placeholder="Bairro" />
