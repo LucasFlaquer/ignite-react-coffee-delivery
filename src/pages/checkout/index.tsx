@@ -1,3 +1,4 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   Bank,
   CreditCard,
@@ -5,19 +6,44 @@ import {
   MapPinLine,
   Money,
 } from '@phosphor-icons/react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 import { Input } from '../../components/input'
 import { Card } from './card'
-import { CoffeeItem } from './coffee-item'
+import { CoffeeCheckoutItem } from './coffee-checkout-item'
+
+const formSchema = z.object({
+  cep: z.string().min(1, 'CEP obrigatório'),
+  street: z.string().min(1, 'Rua obrigatória'),
+  streetNumber: z.string().min(1, 'Informe o número'),
+  complement: z.string(),
+  neighborhood: z.string().min(1, 'Informe o bairro'),
+  city: z.string().min(1, 'Informe a cidade'),
+  uf: z.string().min(1, 'Informe o estado'),
+  paymentMethod: z.enum(['credit-card', 'debit-card', 'money'], {
+    invalid_type_error: 'Informe um método de pagamento',
+  }),
+})
+
+type FormSchema = z.infer<typeof formSchema>
 
 export function Checkout() {
+  const { register, handleSubmit } = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
+  })
+
+  function onSubmit(values: FormSchema) {
+    console.log(values)
+  }
+
   return (
     <div className="mx-auto flex w-full max-w-[1120px] justify-between gap-8">
       <div className="flex-1">
         <h2 className="mb-4 font-title text-lg font-bold text-base-title">
           Complete seu pedido
         </h2>
-        <form id="checkout-form">
+        <form id="checkout-form" onSubmit={handleSubmit(onSubmit)}>
           <Card
             title="Endereço de Entrega"
             description="Informe o endereço onde deseja receber seu pedido"
@@ -25,7 +51,7 @@ export function Checkout() {
           >
             <div className="grid grid-cols-[200px_1fr_60px] gap-4 grid-areas-addressForm">
               <div className="area-cep">
-                <Input type="text" placeholder="CEP" />
+                <Input type="text" placeholder="CEP" {...register('cep')} />
               </div>
               <div className="area-address">
                 <Input type="text" placeholder="RUA" />
@@ -107,10 +133,9 @@ export function Checkout() {
           Cafés selecionados
         </h2>
         <div className="rounded-bl-[36px] rounded-br-md rounded-tl-md rounded-tr-[36px] bg-base-card p-10">
-          <CoffeeItem />
-          <CoffeeItem />
-          <CoffeeItem />
-          <CoffeeItem />
+          <CoffeeCheckoutItem />
+          <CoffeeCheckoutItem />
+
           <div className="space-y-4">
             <div className="flex justify-between">
               <span className="font-text text-sm text-base-text">
@@ -135,7 +160,13 @@ export function Checkout() {
               </strong>
             </div>
           </div>
-          <button>Confirmar pedido</button>
+          <button
+            type="submit"
+            form="checkout-form"
+            className="mt-4 w-full rounded-md bg-yellow px-2 py-3 text-center text-sm font-bold uppercase text-white hover:bg-yellow-dark"
+          >
+            Confirmar pedido
+          </button>
         </div>
       </div>
     </div>

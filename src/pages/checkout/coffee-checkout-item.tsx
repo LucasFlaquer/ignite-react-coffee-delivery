@@ -1,6 +1,6 @@
 import { Minus, Plus, Trash } from '@phosphor-icons/react'
 
-export function CoffeeItem() {
+export function CoffeeCheckoutItem() {
   return (
     <div className="mb-6 flex border-b border-base-button px-1 pb-8 pt-2">
       <div className="flex max-w-[255px] items-center gap-5">
