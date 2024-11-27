@@ -1,10 +1,23 @@
-import { FocusEvent, InputHTMLAttributes, useState } from 'react'
+import {
+  FocusEvent,
+  forwardRef,
+  InputHTMLAttributes,
+  LegacyRef,
+  useState,
+} from 'react'
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   isOptional?: boolean
 }
 
-export function Input({ isOptional, ...rest }: Props) {
+export const Input = forwardRef(function Input(
+  {
+    isOptional,
+
+    ...rest
+  }: Props,
+  ref: LegacyRef<HTMLInputElement>,
+) {
   const [isFocused, setIsFocused] = useState(false)
 
   function handleFocus(event: FocusEvent<HTMLInputElement, Element>) {
@@ -24,6 +37,7 @@ export function Input({ isOptional, ...rest }: Props) {
     >
       <input
         {...rest}
+        ref={ref}
         onFocus={handleFocus}
         onBlur={handleBlur}
         className="w-full bg-transparent text-sm text-base-text outline-none placeholder:text-base-label"
@@ -33,4 +47,4 @@ export function Input({ isOptional, ...rest }: Props) {
       )}
     </div>
   )
-}
+})
