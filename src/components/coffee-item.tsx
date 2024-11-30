@@ -13,7 +13,7 @@ export function CoffeeItem({ coffee }: Props) {
   const [amount, setAmount] = useState(1)
 
   function handleAddToCart() {
-    addToCart({ itemId: coffee.id, quantity: amount })
+    addToCart({ ...coffee, quantity: amount })
   }
   function handleAdd() {
     setAmount((state) => state + 1)

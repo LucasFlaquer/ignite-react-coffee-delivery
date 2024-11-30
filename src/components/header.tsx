@@ -1,13 +1,22 @@
 import { MapPin, ShoppingCart } from '@phosphor-icons/react'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import Logo from '../assets/Logo.svg'
 import { useCart } from '../context/cart-context'
 
 export function Header() {
   const { itemsInCart } = useCart()
+  const navigation = useNavigate()
+
+  function handleClick() {
+    navigation('/checkout')
+  }
+
   return (
     <header className="flex justify-between bg-background px-40 py-8">
-      <img src={Logo} alt="Coffee delivery" />
+      <NavLink to={'/'}>
+        <img src={Logo} alt="Coffee delivery" />
+      </NavLink>
       <div className="flex gap-3">
         <div className="flex items-center rounded-lg bg-purple-light p-2 text-purple-dark">
           <MapPin size={22} weight="fill" className="mr-1 text-purple" />
@@ -19,7 +28,7 @@ export function Header() {
               {itemsInCart}
             </span>
           )}
-          <button>
+          <button onClick={handleClick}>
             <ShoppingCart
               weight="fill"
               size={22}
