@@ -51,7 +51,7 @@ export function CoffeeItem({ coffee }: Props) {
           className="font-text text-xxs text-base-text"
           style={{ lineHeight: '130%' }}
         >
-          R${' '}
+          R${''}
           <span className="font-title text-2xl font-bold">
             {coffeePriceFormatted}
           </span>
