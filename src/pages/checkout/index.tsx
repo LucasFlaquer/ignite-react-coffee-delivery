@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import { CoffeeCheckoutItem } from '../../components/coffee-checkout-item'
 import { CheckoutForm } from '../../components/form/checkout-form'
 import { useCart } from '../../context/cart-context'
@@ -18,8 +20,11 @@ interface FormValues {
 
 export function Checkout() {
   const { cart, subtotal } = useCart()
+  const navigation = useNavigate()
+
   function handleSubmit(values: FormValues) {
     console.log(values)
+    navigation('/confirmation', { state: values })
   }
 
   const subtotalFormatted = formatCurrency(subtotal)
